@@ -54,7 +54,7 @@ ENV PATH="/root/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH" \
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-    sudo apt-get update -qq && apt-get update -qq & \
+    sudo apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --allow-downgrades -y --no-install-recommends \
       yarn build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
