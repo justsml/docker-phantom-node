@@ -47,7 +47,6 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 ENV PATH="/root/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH" \
     DOCKER_OPTS="--mtu 1400"
 
-
 # # FOR POSTGRES: Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/update-alternatives
@@ -57,8 +56,8 @@ RUN apt-get update -qq && \
     apt-get install --allow-downgrades -y --no-install-recommends \
       build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
       aufs-tools iptables libmagickwand-dev libc6-dev libffi-dev gnutls-bin sqlite3 libsqlite3-dev \
-      rsync git-core apt-transport-https openssh-client curl libyaml-dev \
-      python-software-properties software-properties-common libpq-dev gawk \
+      rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
+      python python-software-properties software-properties-common libpq-dev gawk libfontconfig \
       libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison
     # reqs for ruby v2.1.x: (i think??) gawk, libreadline6-dev, autoconf, libgmp-dev, libgdbm-dev, libncurses5-dev, automake, libtool, bison
 
@@ -87,7 +86,7 @@ RUN set -ex \
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 6.9.2
 
-RUN -sSLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
+RUN curl -sLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && curl -sLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
   && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
   && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
