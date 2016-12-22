@@ -51,10 +51,13 @@ ENV PATH="/root/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH" \
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/update-alternatives
 # RUN mkdir -p /usr/share/man/man1 && mkdir -p /usr/share/man/man7 && \
-RUN apt-get update -qq && \
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    sudo apt-get update -qq && apt-get update -qq & \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --allow-downgrades -y --no-install-recommends \
-      build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
+      yarn build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
       aufs-tools iptables libmagickwand-dev libc6-dev libffi-dev gnutls-bin sqlite3 libsqlite3-dev \
       rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
       python python-software-properties software-properties-common libpq-dev gawk libfontconfig \
