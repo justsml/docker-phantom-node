@@ -52,17 +52,22 @@ ENV PATH="/root/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH" \
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/update-alternatives
 # RUN mkdir -p /usr/share/man/man1 && mkdir -p /usr/share/man/man7 && \
 
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-    sudo apt-get update -qq && \
+RUN apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --allow-downgrades -y --no-install-recommends \
-      yarn build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
+      build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
       aufs-tools iptables libmagickwand-dev libc6-dev libffi-dev gnutls-bin sqlite3 libsqlite3-dev \
       rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
-      python python-software-properties software-properties-common libpq-dev gawk libfontconfig \
-      libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison
+      python python-software-properties software-properties-common libpq-dev gawk libfontconfig1-dev libfontconfig-dev \
+      libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison \
+      libicu-dev libjpeg-dev libpng12-dev
     # reqs for ruby v2.1.x: (i think??) gawk, libreadline6-dev, autoconf, libgmp-dev, libgdbm-dev, libncurses5-dev, automake, libtool, bison
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive \
+    apt-get install --allow-downgrades -y --no-install-recommends yarn
 
 RUN /bin/bash -c 'curl -fsLO https://get.docker.com/builds/Linux/x86_64/docker-1.12.5.tgz && tar --strip-components=1 -xzf docker-1.12.5.tgz -C /usr/local/bin && chmod +x /usr/local/bin/docker && curl -sL "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose'
 
