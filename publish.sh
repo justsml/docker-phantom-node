@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
-
+VERSION_LABEL=${1-"$VERSION_LABEL"}
 VERSION_LABEL=${VERSION_LABEL-""}
+echo "Publishing the 'latest' version & pinning it at version: $VERSION_LABEL"
 
 docker build -t docker-phantom-node:latest .
 docker tag docker-phantom-node:latest justsml/docker-phantom-node:latest
