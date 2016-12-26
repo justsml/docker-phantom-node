@@ -117,7 +117,9 @@ RUN /bin/bash -x -c "echo $(which node) && \
     less \
     less-plugin-autoprefix \
     less-plugin-clean-css \
-    webpack"
+    webpack \
+    nodemon \
+    pm2"
 
 COPY bin/phantomjs* /usr/local/bin/
 
