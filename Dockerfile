@@ -51,8 +51,8 @@ ENV PATH="/root/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:$PATH" \
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 # RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/update-alternatives
 # RUN mkdir -p /usr/share/man/man1 && mkdir -p /usr/share/man/man7 && \
-
-RUN apt-get update -qq && \
+RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main " >> /etc/apt/sources.list && \
+    apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --allow-downgrades -y --no-install-recommends \
       build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
@@ -60,7 +60,7 @@ RUN apt-get update -qq && \
       rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
       python python-software-properties software-properties-common libpq-dev gawk libfontconfig1-dev libfontconfig-dev \
       libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison \
-      libicu-dev libjpeg-dev libpng12-dev
+      libicu-dev libicu52 libjpeg-dev libpng12-dev
     # reqs for ruby v2.1.x: (i think??) gawk, libreadline6-dev, autoconf, libgmp-dev, libgdbm-dev, libncurses5-dev, automake, libtool, bison
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
