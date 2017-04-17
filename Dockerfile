@@ -60,7 +60,8 @@ RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main " >> /etc/a
       rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
       python python-software-properties software-properties-common libpq-dev gawk libfontconfig1-dev libfontconfig-dev \
       libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison \
-      libicu-dev libicu52 libjpeg-dev libpng12-dev
+      libicu-dev libicu52 libjpeg-dev libpng12-dev \
+       pdftk ghostscript xpdf-utils poppler-utils fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-nanum
     # reqs for ruby v2.1.x: (i think??) gawk, libreadline6-dev, autoconf, libgmp-dev, libgdbm-dev, libncurses5-dev, automake, libtool, bison
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
