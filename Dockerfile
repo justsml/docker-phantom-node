@@ -112,6 +112,7 @@ WORKDIR /app
 RUN /bin/bash -x -c "echo $(which node) && \
   npm i -g \
     npm@5 \
+    yarn \
     babel-cli \
     babel-core \
     babel-preset-es2015 \
