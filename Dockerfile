@@ -93,7 +93,7 @@ RUN set -ex \
   done
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.9.2
+ENV NODE_VERSION 6.10.3
 
 RUN curl -sLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
   && curl -sLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -110,7 +110,8 @@ WORKDIR /app
 # sudo chmod -Rfc 755 $(which npm) && \
 # USER www-data
 RUN /bin/bash -x -c "echo $(which node) && \
-  npm i -g yarn \
+  npm i -g \
+    npm@5 \
     babel-cli \
     babel-core \
     babel-preset-es2015 \
