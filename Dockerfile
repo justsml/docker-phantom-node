@@ -55,13 +55,14 @@ RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main " >> /etc/a
     apt-get update -qq && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install --allow-downgrades -y --no-install-recommends \
+      libicu52 git-core golang poppler-utils wv unrtf tidy \
       build-essential cgroupfs-mount apt-utils lsof sudo ca-certificates dialog gettext imagemagick gnupg2 \
       aufs-tools iptables libmagickwand-dev libc6-dev libffi-dev gnutls-bin sqlite3 libsqlite3-dev \
-      rsync git-core apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
+      rsync apt-transport-https openssh-client curl libyaml-dev apache2-utils libjpeg62 \
       python python-software-properties software-properties-common libpq-dev gawk libfontconfig1-dev libfontconfig-dev \
       libreadline6-dev autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison \
-      libicu-dev libicu52 libjpeg-dev libpng12-dev \
-       pdftk ghostscript xpdf-utils poppler-utils fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-nanum
+      libicu-dev libjpeg-dev libpng12-dev \
+      pdftk ghostscript xpdf-utils fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-nanum
     # reqs for ruby v2.1.x: (i think??) gawk, libreadline6-dev, autoconf, libgmp-dev, libgdbm-dev, libncurses5-dev, automake, libtool, bison
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
