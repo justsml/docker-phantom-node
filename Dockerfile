@@ -112,7 +112,7 @@ WORKDIR /app
 # USER www-data
 RUN /bin/bash -x -c "echo node: $(which -a node) && echo npm: $(which -a npm) && \
   npm i -g npm@5 && \
-  npm i -g process-nextick-args
+  npm i -g process-nextick-args"
   
 RUN /bin/bash -x -c "echo node: $(which -a node) && echo npm: $(which -a npm) && \
   npm i -g babel-cli \
