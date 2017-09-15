@@ -112,9 +112,8 @@ WORKDIR /app
 # USER www-data
 RUN /bin/bash -x -c "echo $(which node) && \
   npm i -g \
-    npm@5 \
-    yarn \
-    babel-cli \
+    npm@5 && \
+  npm i -g yarn babel-cli \
     babel-core \
     babel-preset-es2015 \
     gulp-cli \
