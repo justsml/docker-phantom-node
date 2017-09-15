@@ -111,9 +111,8 @@ WORKDIR /app
 # sudo chmod -Rfc 755 $(which npm) && \
 # USER www-data
 RUN /bin/bash -x -c "echo $(which node) && \
-  npm i -g \
-    npm@5 && \
-  npm i -g yarn babel-cli \
+  npm i -g npm@5 && \
+  npm i -g babel-cli \
     babel-core \
     babel-preset-es2015 \
     gulp-cli \
