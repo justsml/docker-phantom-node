@@ -110,8 +110,11 @@ WORKDIR /app
 # sudo chmod -Rfc 755 $(which node) && \
 # sudo chmod -Rfc 755 $(which npm) && \
 # USER www-data
-RUN /bin/bash -x -c "echo $(which node) && \
+RUN /bin/bash -x -c "echo node: $(which -a node) && echo npm: $(which -a npm) && \
   npm i -g npm@5 && \
+  npm i -g process-nextick-args
+  
+RUN /bin/bash -x -c "echo node: $(which -a node) && echo npm: $(which -a npm) && \
   npm i -g babel-cli \
     babel-core \
     babel-preset-es2015 \
